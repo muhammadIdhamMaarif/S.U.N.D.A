@@ -1,0 +1,26 @@
+@startuml ActivityDiagramNavigasi
+
+title Activity Diagram – Navigasi Helm Pintar AI
+
+start
+
+:Pengguna mengucapkan tujuan;
+:Mic menangkap suara;
+:Kirim ke modul Speech-To-Text;
+:Proses STT → hasilkan teks;
+
+if (Validasi input berhasil?) then (ya)
+  :Parser menganalisis tujuan;
+  :Ambil lokasi saat ini dari GPS;
+  :Kirim ke API Google Maps;
+  :Dapatkan rute;
+  :Kirim rute ke renderer HUD;
+  :Tampilkan arah di HUD;
+  :Ucapkan konfirmasi arah (TTS);
+else (tidak valid)
+  :Berikan pesan gagal (TTS);
+endif
+
+stop
+
+@enduml
