@@ -1,0 +1,38 @@
+@startuml
+title OV-1 Operational View – Helm Pintar AI HUD System
+
+actor "Pengendara Motor" as Rider
+actor "Smartphone" as Phone
+actor "ESP32 Microcontroller" as ESP32
+actor "Cloud Server" as Cloud
+actor "Sensor Eksternal" as Sensor
+
+rectangle "Helm Pintar AI" {
+    component "Voice Assistant" as VA
+    component "HUD Display" as HUD
+    component "GPS Navigation System" as GPS
+    component "Sensor Interface" as SensorIF
+    component "Camera System" as Cam
+    component "Connectivity Manager" as Conn
+}
+
+Rider --> VA : Ucapkan Perintah Suara
+VA --> GPS : Navigasi ke Tujuan
+VA --> HUD : Tampilkan Info Navigasi
+GPS --> HUD : Arah Rute Real-Time
+
+Rider --> HUD : Melihat Tampilan
+Rider --> Cam : Trigger Kamera (Otomatis/Manual)
+Sensor --> SensorIF : Data LiDAR, IMU, Kompas
+SensorIF --> HUD : Peringatan Blind Spot
+
+ESP32 --> SensorIF : Data Baterai & Tombol
+SensorIF --> Conn : Kirim ke Smartphone
+
+Phone --> Conn : Kirim Layout HUD Baru
+Conn --> HUD : Update Tampilan Dinamis
+
+Conn --> Cloud : Sinkronisasi Profil & OTA
+Cam --> Cloud : Backup Video (Opsional)
+
+@enduml
