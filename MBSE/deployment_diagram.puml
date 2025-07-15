@@ -1,0 +1,66 @@
+@startuml
+title Deployment Diagram – Helm Pintar AI System
+
+skinparam componentStyle rectangle
+
+' ------------------- Nodes -------------------
+node "Raspberry Pi CM4 (Main Processor)" {
+  component "Main Software Core" {
+    [HUD Renderer]
+    [Voice Assistant]
+    [Sensor Parser]
+    [REST API Server]
+    [Dashcam Recorder]
+  }
+  [Raspberry Pi OS Lite]
+}
+
+node "ESP32 (Microcontroller)" {
+  component "ESP32 Firmware" {
+    [Battery Monitor]
+    [Button Handler]
+    [Serial Bridge]
+  }
+}
+
+node "Smartphone (User Device)" {
+  component "Mobile App (Flutter)" {
+    [HUD Layout Editor]
+    [Voice Command Sender]
+    [Notifikasi Sync]
+  }
+}
+
+node "Cloud Server" {
+  [Profile Sync API]
+  [OTA Update Server]
+}
+
+node "Peripheral Devices" {
+  [GPS Module]
+  [LiDAR Sensor]
+  [IMU Sensor]
+  [RTC Module]
+  [OLED HUD Display]
+  [Camera Module]
+  [Bone Speaker]
+  [Microphone]
+}
+
+' ------------------- Relationships -------------------
+[Voice Assistant] --> [Microphone] : Audio In
+[Voice Assistant] --> [Bone Speaker] : Audio Out
+[Sensor Parser] --> [LiDAR Sensor]
+[Sensor Parser] --> [GPS Module]
+[Sensor Parser] --> [IMU Sensor]
+[Sensor Parser] --> [RTC Module]
+[Dashcam Recorder] --> [Camera Module]
+[HUD Renderer] --> [OLED HUD Display]
+[ESP32 Firmware] --> [Battery Monitor]
+[ESP32 Firmware] --> [Button Handler]
+[Mobile App (Flutter)] --> [REST API Server] : Wi-Fi / HTTP
+[Mobile App (Flutter)] --> [ESP32 Firmware] : BLE / Serial
+[REST API Server] --> [OTA Update Server] : HTTPS
+[Mobile App (Flutter)] --> [Profile Sync API] : Cloud Sync
+
+@enduml
