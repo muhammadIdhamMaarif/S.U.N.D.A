@@ -1,0 +1,27 @@
+@startuml
+title State/Transition Diagram – Smart Helmet AI Operational Mode
+
+[*] --> Booting : Power On
+
+Booting --> Idle : Init selesai
+
+Idle --> Listening : Wake Word "Hey Helmet"
+Listening --> Processing : Input suara diterima
+Processing --> Responding : Command dikenali
+Responding --> Idle : TTS selesai / Timeout
+
+Idle --> Navigating : Perintah "Navigasi ke Lokasi"
+Navigating --> Idle : Tujuan tercapai / Stop command
+
+Idle --> Recording : Perintah "Rekam video"
+Recording --> Idle : Stop record / Durasi selesai
+
+[*] --> Charging : Dihubungkan ke charger
+Charging --> Idle : Pengisian selesai / Dicabut
+
+Idle --> SafeMode : Daya < 10% / Overheat
+SafeMode --> Idle : Baterai aman / Pendingin aktif
+
+Idle --> [*] : Power Off
+
+@enduml
