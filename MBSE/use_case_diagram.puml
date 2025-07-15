@@ -1,0 +1,46 @@
+@startuml
+title Use Case Diagram – Helm Pintar AI
+
+actor Pengendara
+actor Smartphone
+actor "Sistem AI" as AI
+actor "Sensor Sistem" as Sensor
+actor "Cloud Service" as Cloud
+
+rectangle "Helm Pintar AI System" {
+  usecase "UC01: Navigasi Real-time" as UC01
+  usecase "UC02: Tampilkan HUD" as UC02
+  usecase "UC03: Perintah Suara" as UC03
+  usecase "UC04: Deteksi Blind Spot" as UC04
+  usecase "UC05: Rekam Video Dashcam" as UC05
+  usecase "UC06: Sinkronisasi Notifikasi" as UC06
+  usecase "UC07: Update OTA Firmware" as UC07
+  usecase "UC08: Mode Aman Berkendara" as UC08
+  usecase "UC09: Pantau Baterai & Suhu" as UC09
+  usecase "UC10: Konfigurasi HUD dari Smartphone" as UC10
+}
+
+Pengendara --> UC01
+Pengendara --> UC02
+Pengendara --> UC03
+Pengendara --> UC04
+Pengendara --> UC05
+Pengendara --> UC08
+
+Smartphone --> UC06
+Smartphone --> UC10
+Smartphone --> UC07
+
+AI --> UC03
+AI --> UC01
+AI --> UC05
+
+Sensor --> UC01
+Sensor --> UC04
+Sensor --> UC09
+
+Cloud --> UC06
+Cloud --> UC07
+Cloud --> UC01
+
+@enduml
