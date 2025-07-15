@@ -1,0 +1,53 @@
+@startuml
+title Allocation Diagram – Smart Helmet AI System
+
+'=== Komponen Fisik ===
+package "Hardware Components" {
+  class "Raspberry Pi CM4" as PiCM4
+  class "ESP32" as ESP32
+  class "LiDAR Sensor" as LiDAR
+  class "IMU Sensor" as IMU
+  class "GPS Module" as GPS
+  class "HUD Display" as HUD
+  class "Camera Module" as Camera
+  class "Bone Speaker & Mic" as AudioHW
+}
+
+'=== Komponen Software ===
+package "Software Modules" {
+  class "Voice Assistant Engine" as VoiceAI
+  class "HUD Renderer" as HUDRenderer
+  class "Sensor Parser" as SensorSW
+  class "Navigation Engine" as NavEngine
+  class "Dashcam Recorder" as CamSW
+  class "REST API Server" as APIServer
+  class "Bluetooth Handler" as BLEHandler
+}
+
+'=== Alokasi Fungsi ===
+"Speech Recognition" --> VoiceAI
+"Navigation & Routing" --> NavEngine
+"HUD Overlay Management" --> HUDRenderer
+"Sensor Data Processing" --> SensorSW
+"Video Recording" --> CamSW
+"Mobile Interface Sync" --> APIServer
+"Bluetooth Sync" --> BLEHandler
+
+'=== Alokasi Komponen Fisik ke Fungsi ===
+VoiceAI --> PiCM4 : executes on
+HUDRenderer --> PiCM4 : executes on
+SensorSW --> PiCM4 : runs on
+NavEngine --> PiCM4 : runs on
+CamSW --> PiCM4 : uses GPU/CPU
+APIServer --> PiCM4 : hosted on
+BLEHandler --> ESP32 : executed on
+
+LiDAR --> SensorSW : input to
+IMU --> SensorSW : input to
+GPS --> NavEngine : input
+Camera --> CamSW : input
+HUD --> HUDRenderer : display to
+AudioHW --> VoiceAI : mic/speaker
+ESP32 --> BLEHandler : platform
+
+@enduml
