@@ -1,0 +1,42 @@
+@startuml
+title Interface Diagram - Smart Helmet AI System
+
+' === Komponen utama ===
+class "Raspberry Pi CM4" as PiCM4
+class "HUD Display" as HUD
+class "Voice Assistant" as VA
+class "LiDAR Sensor" as LiDAR
+class "IMU Sensor" as IMU
+class "Camera Module" as Cam
+class "ESP32 Controller" as ESP32
+class "Smartphone App" as App
+class "Cloud Service" as Cloud
+
+' === Interface/Protocol Layer ===
+interface UART
+interface I2C
+interface GPIO
+interface REST_API
+interface WebSocket
+interface HDMI
+interface CSI
+interface SPI
+
+' === Koneksi Antar Komponen ===
+ESP32 -[hidden]--> PiCM4
+HUD -[hidden]--> PiCM4
+VA -[hidden]--> PiCM4
+
+' === Relasi dan Protokol ===
+ESP32 --> PiCM4 : UART
+ESP32 --> App : Wi-Fi / BLE
+LiDAR --> PiCM4 : UART
+IMU --> PiCM4 : I2C
+Cam --> PiCM4 : CSI / USB
+HUD --> PiCM4 : HDMI / I2C
+VA --> PiCM4 : Internal
+App --> PiCM4 : REST_API
+App --> PiCM4 : WebSocket
+PiCM4 --> Cloud : Internet
+
+@enduml
