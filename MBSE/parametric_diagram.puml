@@ -1,0 +1,48 @@
+@startuml
+title Parametric Diagram: Runtime Estimation (Simplified)
+
+class Battery {
+  +capacity_mAh = 5000
+  +voltage_V = 3.7
+}
+
+class HUD {
+  +power_mW = 300
+}
+
+class AI_Unit {
+  +power_mW = 700
+}
+
+class Camera {
+  +power_mW = 600
+}
+
+class SensorArray {
+  +power_mW = 400
+}
+
+class TotalPowerCalc {
+  +totalPower_mW
+  --
+  Formula:
+  totalPower = hud + ai + cam + sensor
+}
+
+class RuntimeCalc {
+  +runtime_hr
+  --
+  Formula:
+  energy_mWh = (capacity * voltage) / 1000
+  runtime = energy_mWh / totalPower
+}
+
+Battery --> RuntimeCalc : capacity_mAh, voltage
+HUD --> TotalPowerCalc
+AI_Unit --> TotalPowerCalc
+Camera --> TotalPowerCalc
+SensorArray --> TotalPowerCalc
+
+TotalPowerCalc --> RuntimeCalc : totalPower_mW
+
+@enduml
