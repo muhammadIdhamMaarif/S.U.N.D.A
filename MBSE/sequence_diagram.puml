@@ -1,0 +1,26 @@
+@startuml SequenceDiagramNavigasi
+
+title Sequence Diagram – Navigasi via Perintah Suara
+
+actor Pengguna
+participant "Mic" as MIC
+participant "Voice Engine\n(STT)" as STT
+participant "AI Parser" as PARSER
+participant "GPS Module" as GPS
+participant "Maps API\n(Google Maps)" as MAPS
+participant "HUD Renderer" as HUD
+participant "TTS Engine" as TTS
+
+Pengguna -> MIC : Ucapkan "Navigasi ke kampus"
+MIC -> STT : Kirim sinyal suara
+STT -> STT : Proses STT → Hasilkan teks
+STT -> PARSER : Kirim hasil teks
+PARSER -> GPS : Ambil lokasi saat ini
+PARSER -> MAPS : Request rute tujuan
+MAPS -> PARSER : Kirim data rute
+PARSER -> HUD : Format dan kirim instruksi arah
+HUD -> Pengguna : Tampilkan arah (HUD)
+PARSER -> TTS : Kirim teks konfirmasi arah
+TTS -> Pengguna : Ucapkan arah via speaker
+
+@enduml
