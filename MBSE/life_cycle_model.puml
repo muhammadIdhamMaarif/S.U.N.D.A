@@ -1,0 +1,63 @@
+@startuml
+title Life Cycle Model – Smart Helmet AI System
+
+start
+
+:Requirement Engineering;
+note right
+Identifikasi kebutuhan pengguna:
+- Navigasi real-time
+- HUD display
+- Deteksi blind spot
+- Kontrol suara
+end note
+
+:System Analysis;
+note right
+Analisis alur sistem,
+stakeholder, skenario,
+dan batasan teknologi.
+end note
+
+:Architecture & Design;
+note right
+Model BDD, IBD, Use Case,
+Sequence & Allocation Diagram
+end note
+
+:Implementation;
+note right
+Implementasi software (Python, C++) dan hardware (ESP32, sensor)
+end note
+
+:Integration & Verification;
+note right
+Pengujian integrasi antar subsistem:
+- Sensor
+- HUD
+- Kamera
+- AI Voice
+end note
+
+:Validation with Users;
+note right
+Validasi fungsionalitas akhir
+berdasarkan kebutuhan awal
+dengan pengendara asli.
+end note
+
+:Deployment;
+note right
+Distribusi produk, penyesuaian firmware,
+update mobile app, OTA update aktif.
+end note
+
+:Operation & Maintenance;
+note right
+Pemeliharaan rutin,
+bugfix, dan penambahan fitur
+berdasarkan feedback pengguna.
+end note
+
+stop
+@enduml
