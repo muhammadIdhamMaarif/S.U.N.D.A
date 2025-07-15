@@ -1,0 +1,84 @@
+
+@startuml RequirementDiagram
+
+' Define Requirements
+requirement REQ_001 {
+  Id = "REQ-001"
+  Text = "Navigasi Real-Time via HUD"
+}
+requirement REQ_001_1 {
+  Id = "REQ-001-1"
+  Text = "Akurasi GPS < 5 meter"
+}
+requirement REQ_002 {
+  Id = "REQ-002"
+  Text = "Deteksi Blind Spot dengan LiDAR"
+}
+requirement REQ_003 {
+  Id = "REQ-003"
+  Text = "Respons Perintah Suara < 2 detik"
+}
+requirement REQ_004 {
+  Id = "REQ-004"
+  Text = "Tampilan Notifikasi HUD"
+}
+requirement REQ_005 {
+  Id = "REQ-005"
+  Text = "Rekaman Video Looping"
+}
+requirement REQ_006 {
+  Id = "REQ-006"
+  Text = "Peringatan Audio Visual Blind Spot"
+}
+requirement REQ_007 {
+  Id = "REQ-007"
+  Text = "Waktu Respons Update HUD < 100 ms"
+}
+requirement REQ_008 {
+  Id = "REQ-008"
+  Text = "Daya Tahan Baterai > 4 jam"
+}
+requirement REQ_011 {
+  Id = "REQ-011"
+  Text = "Enkripsi Data Transmisi"
+}
+requirement REQ_012 {
+  Id = "REQ-012"
+  Text = "Fallback Sensor saat Error"
+}
+requirement REQ_013 {
+  Id = "REQ-013"
+  Text = "Firmware OTA Update"
+}
+
+' Define Components
+component COMP_001 {
+  [GPS Module]
+}
+component COMP_002 {
+  [Modul Enkripsi Data]
+}
+component COMP_003 {
+  [Fallback Sensor System]
+}
+
+' Define Test Cases
+artifact TC_001 as "Test Blind Spot"
+artifact TC_002 as "Test Voice Response"
+artifact TC_003 as "Test Blind Spot Warning"
+artifact TC_004 as "Test Battery Life"
+artifact TC_005 as "Test OTA Update"
+
+' Relationships
+REQ_001 -down-> REQ_001_1 : deriveReqt
+REQ_001_1 --> COMP_001 : satisfy
+REQ_002 --> TC_001 : verify
+REQ_003 --> TC_002 : verify
+REQ_006 --> TC_003 : verify
+REQ_001 --> REQ_007 : refine
+REQ_008 --> TC_004 : verify
+REQ_011 --> COMP_002 : satisfy
+REQ_012 --> COMP_003 : satisfy
+REQ_013 --> TC_005 : verify
+
+@enduml
