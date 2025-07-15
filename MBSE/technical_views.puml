@@ -1,0 +1,18 @@
+@startuml
+title TV-1 Technical Standards View – Helm Pintar
+
+node "Helm Pintar AI" {
+  [HUD Display] - [HDMI / I2C]
+  [Voice Assistant] - [STT via Vosk]
+  [ESP32 Module] - [UART Serial]
+  [GPS Module] - [UART]
+  [LiDAR] - [UART/USB]
+  [Smartphone App] - [Wi-Fi Direct + REST]
+  [Cloud Server] - [HTTPS + OTA Update]
+  [Camera Recorder] - [USB / CSI]
+}
+
+[ESP32 Module] --> [Helm Pintar AI] : UART
+[Smartphone App] --> [Helm Pintar AI] : REST API\nWebSocket
+[Helm Pintar AI] --> [Cloud Server] : OTA\nBackup Video
+@enduml
