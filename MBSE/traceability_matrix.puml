@@ -1,0 +1,108 @@
+@startuml TraceabilityMatrix
+
+title Traceability Matrix – Smart Helmet AI System
+
+' Requirements
+class RQ01 as "RQ01\nNavigasi real-time"
+class RQ02 as "RQ02\nHUD tampilan arah"
+class RQ03 as "RQ03\nPerintah suara"
+class RQ04 as "RQ04\nDeteksi blind spot"
+class RQ05 as "RQ05\nRekaman perjalanan"
+class RQ06 as "RQ06\nNotifikasi smartphone"
+class RQ07 as "RQ07\nKonfigurasi dari HP"
+class RQ08 as "RQ08\nEfisiensi daya"
+class RQ09 as "RQ09\nRespon gerak"
+class RQ10 as "RQ10\nOTA update"
+class RQ11 as "RQ11\nSiang-malam support"
+class RQ12 as "RQ12\nMinim gangguan"
+
+' Functions
+class F01 as "F01\nNavigasi GPS"
+class F02 as "F02\nTampilan HUD"
+class F03 as "F03\nVoice Recognition"
+class F04 as "F04\nDeteksi Blind Spot"
+class F05 as "F05\nPerekaman Dashcam"
+class F06 as "F06\nSinkronisasi Notifikasi"
+class F07 as "F07\nKonfigurasi HUD"
+class F08 as "F08\nMonitoring Daya"
+class F09 as "F09\nSensor Gerak & Posisi"
+class F10 as "F10\nOTA Firmware Update"
+class F11 as "F11\nAuto Brightness"
+class F12 as "F12\nMode Aman Berkendara"
+
+' Components
+class GPS
+class "HUD Display" as HUD
+class "Raspberry Pi" as RPi
+class Mic
+class "Mycroft AI" as Mycroft
+class LiDAR
+class Camera
+class Smartphone
+class "ESP32" as ESP
+class "Battery Module" as Battery
+class "IMU Sensor" as IMU
+class "Cloud Server" as Cloud
+class "Ambient Light Sensor" as ALS
+class "Mode Manager" as Mode
+
+' Relationships: Requirement → Function
+RQ01 --> F01
+RQ02 --> F02
+RQ03 --> F03
+RQ04 --> F04
+RQ05 --> F05
+RQ06 --> F06
+RQ07 --> F07
+RQ08 --> F08
+RQ09 --> F09
+RQ10 --> F10
+RQ11 --> F11
+RQ12 --> F12
+
+' Relationships: Function → Component
+F01 --> GPS
+F01 --> RPi
+F01 --> HUD
+
+F02 --> HUD
+F02 --> RPi
+
+F03 --> Mic
+F03 --> Mycroft
+F03 --> RPi
+
+F04 --> LiDAR
+F04 --> HUD
+F04 --> RPi
+
+F05 --> Camera
+F05 --> RPi
+
+F06 --> Smartphone
+F06 --> HUD
+F06 --> RPi
+
+F07 --> Smartphone
+F07 --> RPi
+
+F08 --> Battery
+F08 --> ESP
+F08 --> RPi
+
+F09 --> IMU
+F09 --> GPS
+F09 --> RPi
+
+F10 --> Cloud
+F10 --> RPi
+
+F11 --> ALS
+F11 --> HUD
+F11 --> RPi
+
+F12 --> Mode
+F12 --> Smartphone
+F12 --> HUD
+
+@enduml
