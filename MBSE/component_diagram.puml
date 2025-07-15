@@ -1,0 +1,58 @@
+@startuml
+title Component Diagram – Helm Pintar AI System
+
+skinparam componentStyle rectangle
+
+package "Core System" {
+  [Main Controller] --> [HUD Module]
+  [Main Controller] --> [Voice Assistant]
+  [Main Controller] --> [Sensor Manager]
+  [Main Controller] --> [Camera Recorder]
+  [Main Controller] --> [Connectivity Manager]
+}
+
+package "HUD Subsystem" {
+  [HUD Module] --> [HUD Renderer]
+  [HUD Module] --> [GPS Overlay]
+  [HUD Module] --> [System Info Fetcher]
+}
+
+package "Voice Subsystem" {
+  [Voice Assistant] --> [Wake Word Detector]
+  [Voice Assistant] --> [STT Engine]
+  [Voice Assistant] --> [TTS Engine]
+  [Voice Assistant] --> [Command Parser]
+}
+
+package "Sensor Subsystem" {
+  [Sensor Manager] --> [LiDAR Parser]
+  [Sensor Manager] --> [IMU Handler]
+  [Sensor Manager] --> [GPS Reader]
+  [Sensor Manager] --> [Battery Monitor]
+}
+
+package "Camera Subsystem" {
+  [Camera Recorder] --> [Loop Recorder]
+  [Camera Recorder] --> [IMU Trigger]
+  [Camera Recorder] --> [Timestamp Overlay]
+}
+
+package "Connectivity" {
+  [Connectivity Manager] --> [REST API Server]
+  [Connectivity Manager] --> [WebSocket Handler]
+  [Connectivity Manager] --> [Layout Config Parser]
+}
+
+package "External Systems" {
+  [ESP32 Firmware]
+  [Mobile App (Flutter)]
+  [Cloud Server]
+}
+
+[REST API Server] --> [Mobile App (Flutter)]
+[WebSocket Handler] --> [Mobile App (Flutter)]
+[ESP32 Firmware] --> [Battery Monitor]
+[ESP32 Firmware] --> [Button Handler]
+[Cloud Server] --> [OTA Update Manager]
+
+@enduml
