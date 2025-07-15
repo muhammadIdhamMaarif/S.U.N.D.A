@@ -1,0 +1,51 @@
+@startuml InternalBlockDiagramHelmPintar
+
+title Internal Block Diagram – Helm Pintar AI
+
+skinparam rectangle {
+  BackgroundColor<<Sensor>> #FDF5E6
+  BackgroundColor<<Processing>> #E6F2FF
+  BackgroundColor<<Display>> #F0FFF0
+  BackgroundColor<<Audio>> #FFF0F5
+  BackgroundColor<<Power>> #F5F5F5
+  BackgroundColor<<Comms>> #F0F8FF
+  BackgroundColor<<Camera>> #FFFACD
+  BackgroundColor<<Mobile>> #FFEFD5
+}
+
+package "HelmetSystem" {
+
+  rectangle "Raspberry Pi CM4" <<Processing>> as Pi
+  rectangle "ESP32" <<Comms>> as ESP
+  rectangle "OLED HUD" <<Display>> as HUD
+  rectangle "Bone Conduction Speaker" <<Audio>> as Speaker
+  rectangle "Mic Array" <<Audio>> as Mic
+  rectangle "GPS Module" <<Sensor>> as GPS
+  rectangle "IMU" <<Sensor>> as IMU
+  rectangle "LiDAR" <<Sensor>> as LiDAR
+  rectangle "Battery + Solar Charge Ctrl" <<Power>> as Battery
+  rectangle "Smartphone App" <<Mobile>> as App
+  rectangle "Camera Module" <<Camera>> as Cam
+  rectangle "RTC Module" <<Sensor>> as RTC
+
+  ' Connections
+  Pi -down-> HUD : HDMI/I2C
+  Pi -down-> Speaker : I2S/Analog
+  Mic -up-> Pi : USB/Audio In
+  LiDAR -left-> Pi : UART
+  GPS -left-> Pi : UART/NMEA
+  IMU -left-> Pi : I2C/SPI
+  RTC -left-> Pi : I2C
+  ESP -left-> Pi : UART/GPIO
+  App -right-> ESP : Wi-Fi / BLE
+  Battery -down-> Pi : Power (5V)
+  Battery -down-> ESP : Power (3.3V)
+  Pi -down-> Cam : CSI / USB
+
+  note right of ESP
+    REST API & WebSocket
+    bridge between Pi ↔ Smartphone
+  end note
+}
+
+@enduml
