@@ -1,0 +1,40 @@
+@startuml
+title Versioning and Configuration Diagram – Smart Helmet AI
+
+package "Smart Helmet AI System" {
+  [v1.0] as V1
+  [v1.1] as V1_1
+  [v2.0] as V2
+}
+
+package "Configuration Items" {
+  [HUD Module]
+  [LiDAR Parser]
+  [Voice Assistant Engine]
+  [Camera System]
+  [ESP32 Firmware]
+  [Mobile App]
+}
+
+' Versi awal
+V1 --> [HUD Module] : Static Clock\nNo Nav Overlay
+V1 --> [LiDAR Parser] : Basic Obstacle Detect
+V1 --> [Voice Assistant Engine] : STT via Google
+V1 --> [Camera System] : Manual Record Only
+V1 --> [ESP32 Firmware] : Battery % Only
+V1 --> [Mobile App] : Layout Config
+
+' Minor update: fitur navigasi dan TTS lokal
+V1_1 --> [HUD Module] : Add Nav Overlay
+V1_1 --> [Voice Assistant Engine] : Local Vosk STT\n+ PicoTTS
+V1_1 --> [Mobile App] : Spotify Control
+
+' Major update: AI trigger, OTA, sensor upgrade
+V2 --> [Camera System] : Auto Record via IMU
+V2 --> [ESP32 Firmware] : OTA + Temp Sensor
+V2 --> [Voice Assistant Engine] : AI Command Chain
+V2 --> [HUD Module] : Night Mode Auto
+V2 --> [LiDAR Parser] : Angle-based Blind Spot Zone
+V2 --> [Mobile App] : OTA Updater
+
+@enduml
