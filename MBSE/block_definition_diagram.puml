@@ -1,0 +1,65 @@
+@startuml BlockDefinitionDiagramHelmPintar
+
+title Block Definition Diagram – Helm Pintar AI
+
+package "HelmetSystem" {
+    class HelmetSystem {
+    }
+
+    class ProcessingUnit {
+        +Raspberry Pi CM4
+        +AI Engine
+        +Pathfinding
+    }
+
+    class SensorSubsystem {
+        +LiDAR : Distance Sensing
+        +GPS : Positioning
+        +IMU : Motion Detection
+    }
+
+    class AudioSubsystem {
+        +Microphone
+        +Bone Conduction Speaker
+    }
+
+    class DisplaySubsystem {
+        +OLED Monocular
+        +Projection Driver
+    }
+
+    class PowerSubsystem {
+        +Battery
+        +Buck Converter
+        +Solar Charging Controller
+    }
+
+    class ConnectivitySubsystem {
+        +ESP32 Module
+        +WiFi/Bluetooth
+        +REST/WebSocket
+    }
+
+    class CameraSubsystem {
+        +Pi Cam V2 / USB Cam
+        +ffmpeg Recorder
+        +IMU Trigger
+    }
+
+    class MobileInterface {
+        +Smartphone App
+        +HUD Layout Config
+        +Media & Notification Control
+    }
+
+    HelmetSystem --> ProcessingUnit
+    HelmetSystem --> SensorSubsystem
+    HelmetSystem --> AudioSubsystem
+    HelmetSystem --> DisplaySubsystem
+    HelmetSystem --> PowerSubsystem
+    HelmetSystem --> ConnectivitySubsystem
+    HelmetSystem --> CameraSubsystem
+    HelmetSystem --> MobileInterface
+}
+
+@enduml
